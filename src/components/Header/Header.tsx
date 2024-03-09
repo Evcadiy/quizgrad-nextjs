@@ -1,5 +1,6 @@
 import Image from "next/image";
 import "@/scss/components/header/header.scss";
+import "@/scss/components/header/header-media.scss";
 import logo from "@/assets/logo-full.svg";
 import Link from "next/link";
 

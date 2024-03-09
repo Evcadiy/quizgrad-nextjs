@@ -1,0 +1,15 @@
+@import "../common/variables";
+
+@media (max-width: $breakpoint_md) {
+  .main-image {
+    display: none;
+  }
+  .get-started-button {
+    padding: 15px 35px;
+  }
+}
+// @media (max-width: $breakpoint_sm) {
+//   .main {
+//     height: 80vh;
+//   }
+// }

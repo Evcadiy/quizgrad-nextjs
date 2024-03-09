@@ -4,6 +4,8 @@ import mainImage from "@/assets/landing-image.svg";
 import lineImage from "@/assets/line.svg";
 
 import "@/scss/main-page/main-page.scss";
+import "@/scss/main-page/main-page-media.scss";
+
 import { MotionH1, MotionLink, MotionP } from "@/utils/motion";
 
 const Home = () => {
@@ -44,16 +46,16 @@ const Home = () => {
             Get started
           </MotionLink>
         </div>
-        <Image width={700} height={700} src={mainImage} alt="main-image" />
+        <Image
+          className="main-image"
+          width={700}
+          height={700}
+          src={mainImage}
+          alt="main-image"
+        />
       </div>
-      <Image
-        className="bottom-left-image"
-        width={150}
-        height={150}
-        src={lineImage}
-        alt="main-image"
-      />
+      <Image className="bottom-left-image" src={lineImage} alt="main-image" />
     </>
   );
-}
-export default Home
+};
+export default Home;
