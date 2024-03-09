@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import "@/scss/main.scss";
-import Header from "@/components/Header/Header";
 
 export const metadata: Metadata = {
   title: "QuizGrad",
