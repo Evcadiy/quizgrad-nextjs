@@ -1,0 +1,10 @@
+@import "@/scss/common/variables";
+
+@media (max-width: $breakpoint_md) {
+  .left-half {
+    width: 100%;
+  }
+  .right-half {
+    display: none;
+  }
+}

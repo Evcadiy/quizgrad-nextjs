@@ -10,7 +10,7 @@ const Header = () => {
       <div className="header-content">
         <Image src={logo} alt="logo" className="logo" />
         <Link className="login-signup-button" href="/register">
-          Log in / Sign up
+          Login / Sign up
         </Link>
       </div>
     </div>
