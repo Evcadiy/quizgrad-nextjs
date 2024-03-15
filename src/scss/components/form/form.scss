@@ -1,0 +1,66 @@
+@import "../../common/variables";
+
+form {
+  max-width: 500px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: stretch;
+
+  p {
+    color: darkgray;
+    text-align: center;
+    font-size: 24px;
+    margin-bottom: 50px;
+  }
+}
+
+form div {
+  margin-bottom: 10px;
+}
+
+input[type="email"],
+input[type="password"] {
+  background-color: $light-gray;
+  width: 100%;
+  padding: 15px 10px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+  transition: border-color 0.3s;
+  box-sizing: border-box;
+}
+
+button[type="submit"] {
+  background-color: $main-blue;
+  color: #fff;
+  max-width: 100%;
+  padding: 15px 30px;
+  font-size: 20px;
+  font-weight: bold;
+  border: 1px solid $main-blue;
+  border-radius: 3px;
+  margin-bottom: 10px;
+  transition: all 0.2s ease;
+  cursor: pointer;
+
+  @media (hover: hover) {
+    &:hover {
+      color: $main-blue;
+      background-color: #fff;
+    }
+  }
+  @media (hover: none) {
+    .switch:active {
+      color: $main-blue;
+      background-color: #fff;
+    }
+  }
+}
+
+input[type="email"]:focus,
+input[type="password"]:focus,
+form:focus-within {
+  outline: none;
+  border-color: $main-blue;
+}

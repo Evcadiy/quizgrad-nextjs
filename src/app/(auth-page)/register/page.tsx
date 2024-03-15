@@ -16,8 +16,8 @@ const Register: React.FC = () => {
   return (
     <div>
       <div className="left-half">
+        <Image className="logo-reg-img" alt={"Logo"} src={logo} />
         <section className="reg-section">
-          <Image className="logo-reg-img" alt={"Logo"} src={logo} />
           {isLogin ? <LoginForm /> : <RegisterForm />}
           <button className="switch" onClick={() => setIsLogin(!isLogin)}>
             {isLogin
