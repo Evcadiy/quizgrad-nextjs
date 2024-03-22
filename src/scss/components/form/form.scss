@@ -20,6 +20,7 @@ form div {
 }
 
 input[type="email"],
+input[type="text"],
 input[type="password"] {
   background-color: $light-gray;
   width: 100%;
@@ -43,7 +44,12 @@ button[type="submit"] {
   margin-bottom: 10px;
   transition: all 0.2s ease;
   cursor: pointer;
-
+  &.disabled {
+    background-color: $light-gray;
+    color: #ccc;
+    cursor: not-allowed;
+    border: 1px solid $light-gray;
+  }
   @media (hover: hover) {
     &:hover {
       color: $main-blue;
@@ -63,4 +69,30 @@ input[type="password"]:focus,
 form:focus-within {
   outline: none;
   border-color: $main-blue;
+}
+
+.for-errors {
+  color: red;
+  font-size: 15px;
+  color: red;
+  display: block;
+  margin-bottom: 10px;
+}
+
+.password-input {
+  position: relative;
+}
+
+.password-input input {
+  padding-right: 2.5rem;
+}
+
+.password-input button {
+  border: none;
+  font-size: 18px;
+  position: absolute;
+  right: 10px;
+  top: 55%;
+  transform: translateY(-50%);
+  z-index: 1;
 }

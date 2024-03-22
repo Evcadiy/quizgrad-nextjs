@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
 import "@/scss/main.scss";
+import Providers from "@/redux/provider";
+import ToastNotificationComp from "@/components/ToastNotificationComp/ToastNotificationComp";
 
 export const metadata: Metadata = {
   title: "QuizGrad",
@@ -14,7 +16,10 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>
-        <div>{children}</div>
+        <Providers>
+          {children}
+          <ToastNotificationComp />
+        </Providers>
       </body>
     </html>
   );

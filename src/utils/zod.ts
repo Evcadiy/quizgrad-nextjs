@@ -4,6 +4,7 @@ const LoginFormSchema = z.object({
   email: z
     .string()
     .email({ message: "Invalid email format" })
+    .min(6, { message: "Email must be at least 6 characters long" })
     .refine(
       (value) => value.includes("@") && value.split("@")[1].includes("."),
       {
