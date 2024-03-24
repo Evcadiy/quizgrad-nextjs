@@ -1,6 +1,6 @@
 import { z } from "zod";
 
-const LoginFormSchema = z.object({
+export const LoginFormSchema = z.object({
   email: z
     .string()
     .email({ message: "Invalid email format" })
@@ -17,4 +17,9 @@ const LoginFormSchema = z.object({
     .min(6, { message: "Password must be at least 6 characters long" }),
 });
 
-export default LoginFormSchema;
+export const RegisterFormSchema = LoginFormSchema.extend({
+  username: z
+    .string()
+    .min(3, { message: "Username must be at least 3 characters long" })
+    .max(20, { message: "Username must not exceed 20 characters" }),
+});

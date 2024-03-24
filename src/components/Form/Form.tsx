@@ -1,30 +1,36 @@
 import { useForm } from "react-hook-form";
-import LoginFormSchema from "@/utils/zod";
+import { LoginFormSchema, RegisterFormSchema } from "@/utils/zod";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { FormValues } from "@/types/formTypes";
-import { useAppDispatch, useAppSelector } from "@/redux/store";
+import { FormProps, FormValues } from "@/types/formTypes";
+import { useAppDispatch } from "@/redux/store";
 import { loginAsync } from "@/redux/slices/authSlice";
-import { toast } from "react-toastify";
-import "@/scss/components/form/form.scss";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { AiFillEye } from "react-icons/ai";
 import { AiFillEyeInvisible } from "react-icons/ai";
+import "@/scss/components/form/form.scss";
 
-const LoginForm: React.FC = () => {
+const Form: React.FC<FormProps> = ({ isMember }) => {
   const {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm<FormValues>({ resolver: zodResolver(LoginFormSchema) });
+  } = useForm<FormValues>({
+    resolver: zodResolver(isMember ? LoginFormSchema : RegisterFormSchema),
+  });
   const dispatch = useAppDispatch();
-  const state = useAppSelector((state) => state.auth);
   const [eyeOpen, setEyeOpen] = useState(false);
   const [passType, setPassType] = useState("password");
 
   const onSubmit = async (data: FormValues) => {
-    const validatedData = LoginFormSchema.parse(data);
+    const schema = isMember ? LoginFormSchema : RegisterFormSchema;
+    const validatedData = schema.parse(data);
     console.log(validatedData);
-    dispatch(loginAsync(validatedData));
+    if (isMember) {
+      dispatch(loginAsync(validatedData));
+    }
+    // else {
+    //   dispatch(regAsync(validatedData));
+    // }
   };
 
   const handlePasswordEye = () => {
@@ -32,17 +38,22 @@ const LoginForm: React.FC = () => {
     setPassType(!eyeOpen ? "text" : "password");
   };
 
-  useEffect(() => {
-    if (state.error) {
-      toast.error(state.error);
-    }
-  }, [state.error]);
-
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
       <p>
-        Welcome back! <br /> Please Login to your account.
+        Welcome back! <br /> Please {isMember ? "Login" : "Register"} to your
+        account.
       </p>
+      {!isMember && (
+        <div>
+          <input
+            type="text"
+            placeholder="User Name"
+            {...register("username")}
+          />
+        </div>
+      )}
+
       <div>
         <input type="email" placeholder="E-mail" {...register("email")} />
       </div>
@@ -67,10 +78,10 @@ const LoginForm: React.FC = () => {
         className={`${errors.email || errors.password ? "disabled" : ""}`}
         type="submit"
       >
-        Login
+        {isMember ? "Login" : "Register"}
       </button>
     </form>
   );
 };
 
-export default LoginForm;
+export default Form;
